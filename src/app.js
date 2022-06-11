@@ -1,1 +1,5 @@
-console.log('Hello world!');
+import { nanoid } from "nanoid";
+import cambiarBackground from './ui.js'
+
+
+cambiarBackground()
