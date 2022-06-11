@@ -4,7 +4,7 @@ import {
   apellidosJugadores,
   posiciones,
 } from "./datos-jugadores";
-import datosUsuario from "./datos-usuario";
+
 
 class Jugador {
   constructor(nombre, id, habilidades, posicion, club, imagenPerfil) {
@@ -144,10 +144,14 @@ function crearEquipo(datosEquipo) {
   );
   return equipoNuevo
 }
+const guardarEquipoEnLocalStorage = (objetoEquipo) => {
+    const equipoAString = JSON.stringify(objetoEquipo);
+    localStorage.setItem(objetoEquipo.nombre, equipoAString);
+  };
 
 function crearEquipos(datosEquipo) {
   const equipoUsuario = crearEquipo(datosEquipo);
-  datosUsuario = equipoUsuario
+  guardarEquipoEnLocalStorage(equipoUsuario);
 }
 
 export default crearEquipos;
