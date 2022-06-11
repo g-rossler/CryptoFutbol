@@ -6,7 +6,7 @@ const text =`<div id="aplicacion" class="container-fluid d-flex flex-column just
 <div class="container-fluid d-flex flex-row justify-content-between" id="navbar">
   <div class="d-flex flex-row align-items-center justify-content-center px-4 py-1 bor-der" id="logo">
     <img src="${urlLogo}" alt="" class="" />
-    <p class="text-white text-center m-0 ps-3 fs-3 fw-bold">CryptoFut</p>
+    <p class="text-white text-center m-0 ps-3 fs-3 fw-bold">CryptoFutbol</p>
   </div>
 
   <div class="d-flex flex-row align-items-center justify-content-center px-4 py-1">

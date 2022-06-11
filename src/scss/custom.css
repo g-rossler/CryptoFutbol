@@ -6,6 +6,10 @@
   border-left: 3px solid white;
 }
 
+#siguiente-fecha:hover{
+  background-color: #1e293b;
+}
+
 .button-81 {
   background-color: #fff;
   border: 0 solid #e2e8f0;
