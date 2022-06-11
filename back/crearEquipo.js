@@ -132,7 +132,7 @@ function crearEquipo(datosEquipo) {
     datosEquipo.nombreClub,
     nanoid(),
     "Argentina",
-    `logo0.jpg`,
+    `logo9.jpg`,
     datosEquipo.keyPublica,
     datosEquipo.keySecreta,
     {
