@@ -27,8 +27,23 @@ const htmlTorneo = `<div id="aplicacion" class="container-fluid d-flex flex-colu
 
 
 <div id="principal">
-        
-</div>
+          <table class="table text-white text-center" id="tabla">
+            <thead id="tabla-primera-fila">
+              <tr>
+                <th scope="col">POS</th>
+                <th scope="col">EQUIPO</th>
+                <th scope="col">PAR</th>
+                <th scope="col">GAN</th>
+                <th scope="col">PER</th>
+                <th scope="col">EMP</th>
+                <th scope="col">GF</th>
+                <th scope="col">GC</th>
+                <th scope="col">PUNTOS</th>
+                <th scope="col">ACCIONES</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
 
 
 

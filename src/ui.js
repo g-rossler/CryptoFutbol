@@ -6,6 +6,52 @@ import htmlTrasferencias from "./pages/transferencias";
 import htmlBinvenida from "./pages/bienvenida";
 import htmlLogIn from "./pages/login";
 import crearEquipos from "../back/crearEquipo";
+import datosTorneo from '../back/torneo'
+
+function crearTablaTorneo() {
+  const $tabla = document.querySelector('#tabla')
+  const $tbody = document.createElement('tbody')
+  for(let i = 0; i <= 9; i++){
+    const $tr = document.createElement('tr')
+    const $th = document.createElement('th')
+    $th.scope = 'row'
+    $th.innerText = datosTorneo[i].posicion
+    const $club = document.createElement('td')
+    $club.innerText = datosTorneo[i].nombre
+    const $partidosJugados = document.createElement('td')
+    $partidosJugados.innerText = datosTorneo[i].partidosJugados
+    const $partidosGanados = document.createElement('td')
+    $partidosGanados.innerText = datosTorneo[i].partidosGanados
+    const $partidosPerdidos = document.createElement('td')
+    $partidosPerdidos.innerText = datosTorneo[i].partidosPerdidos
+    const $partidosEmpatados = document.createElement('td')
+    $partidosEmpatados.innerText = datosTorneo[i].partidosEmpatados
+    const $golesPositivos = document.createElement('td')
+    $golesPositivos.innerText = datosTorneo[i].golesPositivos
+    const $golesNegativos = document.createElement('td')
+    $golesNegativos.innerText = datosTorneo[i].golesNegativos
+    const $puntos = document.createElement('td')
+    $puntos.innerText = datosTorneo[i].puntosTorneo
+    const $boton = document.createElement('button')
+    $boton.innerText = 'DETALLES'
+    $boton.className = 'button-81'
+    $boton.id = datosTorneo[i].nombre
+    //$boton.addEventListener('click')
+
+    $tr.appendChild($th)
+    $tr.appendChild($club)
+    $tr.appendChild($partidosJugados)
+    $tr.appendChild($partidosGanados)
+    $tr.appendChild($partidosPerdidos)
+    $tr.appendChild($partidosEmpatados)
+    $tr.appendChild($golesPositivos)
+    $tr.appendChild($golesNegativos)
+    $tr.appendChild($puntos)
+    $tr.appendChild($boton)
+    $tbody.appendChild($tr)
+  }
+  $tabla.appendChild($tbody)
+}
 
 function crearBotones() {
   document.querySelector("#boton-inicio").onclick = () =>
@@ -36,6 +82,7 @@ function crearInterfaz(pantalla) {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTorneo;
     crearBotones();
+    crearTablaTorneo()
   } else if (pantalla === "transferencias") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTrasferencias;
@@ -61,49 +108,5 @@ function crearInterfaz(pantalla) {
   }
 }
 
-export function mostrarEquipo(objetoEquipo) {
-  const $botonEquipo = document.querySelector("#boton-equipo");
-  $botonEquipo.classList.remove("oculto");
-  $botonEquipo.classList.add("button-81");
-  $botonEquipo.classList.add("mx-2");
-  const $divTablaEquipo = document.querySelector("#tabla-equipo");
-  const $h2NombreEquipo = document.querySelector("#nombre-equipo");
-  const $logoEquipo = document.querySelector("#logo-equipo");
-  const $logoEquipoChico = document.querySelector("#logo-equipo-chico");
-  const $botonGenerarEquipo = document.querySelector("#boton-crear-equipo");
-
-  $h2NombreEquipo.textContent = `Bienvenido ${objetoEquipo.nombre}`;
-  $divTablaEquipo.classList.remove("oculto");
-  $divTablaEquipo.classList.add("text-center");
-  $divTablaEquipo.classList.add("d-flex");
-  $divTablaEquipo.classList.add("flex-column");
-
-  $logoEquipo.src = `./imagenes/imagenesEquipos/${objetoEquipo.logo}`;
-  $logoEquipoChico.src = `./imagenes/imagenesEquipos/${objetoEquipo.logo}`;
-  $botonGenerarEquipo.className = "oculto";
-}
-
-export function crearTablaJugadores(objetoEquipo) {
-  const $divTablaEquipo = document.querySelector("#tabla-equipo");
-  $divTablaEquipo.classList = "oculto";
-  const $tablaSuplentes = document.querySelector("#tabla-suplentes");
-  $tablaSuplentes.classList.remove("oculto");
-  const $detallesEquipoSuplente = document.querySelector(
-    "#detalles-equipo-suplente"
-  );
-  const $specsEnTablaSuplentes = document.querySelector(
-    "#contenido-tabla-equipo-suplentes"
-  );
-  $specsEnTablaSuplentes.innerHTML = "";
-  objetoEquipo.jugadores.suplentes.forEach((jugador) => {
-    const nuevoJugador = document.createElement("tr");
-    nuevoJugador.innerHTML = `
-        <th scope="row">${`${jugador.nombre} ID: ${jugador.id}`}</th>
-        <td>${jugador.habilidades.ataque}</td>
-        <td>${jugador.habilidades.defensa}</td>
-        <td>${jugador.habilidades.resistencia}</td>`;
-    $detallesEquipoSuplente.append(nuevoJugador);
-  });
-}
 
 export default crearInterfaz;
