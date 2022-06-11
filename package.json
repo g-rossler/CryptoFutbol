@@ -10,6 +10,7 @@
     "parcel": "^2.6.0"
   },
   "dependencies": {
+    "bootstrap": "^5.2.0-beta1",
     "nanoid": "^4.0.0"
   }
 }
