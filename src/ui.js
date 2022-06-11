@@ -51,7 +51,6 @@ function crearInterfaz(pantalla) {
         cantidadXLM: document.querySelector("#cantidad-XLM").value,
       };
       crearInterfaz("menu de inicio");
-      console.log(datosEquipo)
       crearEquipos(datosEquipo)
     };
   } else {

@@ -1,11 +1,10 @@
 import { nanoid } from "nanoid";
 import {
-    nombresDeJugadores,
-    apellidosJugadores,
-    posiciones,
-  } from './datos-jugadores';
-import { nombresParaEquipos } from './datos-equipo'
-
+  nombresDeJugadores,
+  apellidosJugadores,
+  posiciones,
+} from "./datos-jugadores";
+import datosUsuario from "./datos-usuario";
 
 class Jugador {
   constructor(nombre, id, habilidades, posicion, club, imagenPerfil) {
@@ -80,7 +79,7 @@ function specsAleatorias() {
   const resultado = Math.ceil(Math.random() * 20) + 50;
   return resultado;
 }
-export function crearTitulares() {
+export function crearTitulares(club) {
   const titulares = [];
 
   for (let i = 0; i < 11; i += 1) {
@@ -96,7 +95,7 @@ export function crearTitulares() {
           resistencia: specsAleatorias(),
         },
         posiciones[i],
-        "proximamente club",
+        club,
         `avataaars${i}.png`
       )
     );
@@ -105,7 +104,7 @@ export function crearTitulares() {
   return titulares;
 }
 
-function crearSuplentes() {
+function crearSuplentes(club) {
   const suplentes = [];
   for (let i = 0; i < 5; i += 1) {
     suplentes.push(
@@ -120,7 +119,7 @@ function crearSuplentes() {
           resistencia: specsAleatorias(),
         },
         posiciones[i],
-        "proximamente club",
+        club,
         `avataaars${i + 11}.png`
       )
     );
@@ -130,7 +129,6 @@ function crearSuplentes() {
 }
 
 function crearEquipo(datosEquipo) {
-
   const equipoNuevo = new Equipo(
     datosEquipo.nombreClub,
     nanoid(),
@@ -139,17 +137,17 @@ function crearEquipo(datosEquipo) {
     datosEquipo.keyPublica,
     datosEquipo.keySecreta,
     {
-      titulares: crearTitulares(),
-      suplentes: crearSuplentes(),
+      titulares: crearTitulares(datosEquipo.nombreClub),
+      suplentes: crearSuplentes(datosEquipo.nombreClub),
       deshabilitados: [],
     }
   );
-
-  return equipoNuevo.nombre;
+  return equipoNuevo
 }
 
 function crearEquipos(datosEquipo) {
-    crearEquipo(datosEquipo)
+  const equipoUsuario = crearEquipo(datosEquipo);
+  datosUsuario = equipoUsuario
 }
 
 export default crearEquipos;
