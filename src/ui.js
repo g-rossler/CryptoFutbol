@@ -1,43 +1,64 @@
 import htmlMenuInicio from "./pages/Inicio";
 import htmlEquipo from "./pages/equipo";
-import htmlClub from './pages/club'
-import htmlTorneo from './pages/torneo'
-import htmlTrasferencias from './pages/transferencias'
-import htmlBinvenida from './pages/bienvenida'
+import htmlClub from "./pages/club";
+import htmlTorneo from "./pages/torneo";
+import htmlTrasferencias from "./pages/transferencias";
+import htmlBinvenida from "./pages/bienvenida";
+import htmlLogIn from "./pages/login";
+import crearEquipos from "../back/crearEquipo";
 
-function crearBotones(){
-    document.querySelector('#boton-inicio').onclick = () => crearInterfaz('menu de inicio');
-    document.querySelector('#boton-equipo').onclick = () => crearInterfaz('equipo');
-    document.querySelector('#boton-club').onclick = () => crearInterfaz('club');
-    document.querySelector('#boton-torneo').onclick = () => crearInterfaz('torneo');
-    document.querySelector('#boton-transferencias').onclick = () => crearInterfaz('transferencias');
+function crearBotones() {
+  document.querySelector("#boton-inicio").onclick = () =>
+    crearInterfaz("menu de inicio");
+  document.querySelector("#boton-equipo").onclick = () =>
+    crearInterfaz("equipo");
+  document.querySelector("#boton-club").onclick = () => crearInterfaz("club");
+  document.querySelector("#boton-torneo").onclick = () =>
+    crearInterfaz("torneo");
+  document.querySelector("#boton-transferencias").onclick = () =>
+    crearInterfaz("transferencias");
 }
 
 function crearInterfaz(pantalla) {
   if (pantalla === "menu de inicio") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlMenuInicio;
-    crearBotones()
-  } else if(pantalla === "equipo"){
+    crearBotones();
+  } else if (pantalla === "equipo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlEquipo;
-    crearBotones()
-  } else if(pantalla === "club"){
+    crearBotones();
+  } else if (pantalla === "club") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlClub;
-    crearBotones()
-  } else if(pantalla === "torneo"){
+    crearBotones();
+  } else if (pantalla === "torneo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTorneo;
-    crearBotones()
-  } else if(pantalla === "transferencias"){
+    crearBotones();
+  } else if (pantalla === "transferencias") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTrasferencias;
-    crearBotones()
+    crearBotones();
+  } else if (pantalla === "login") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlLogIn;
+    document.querySelector("#boton-siguiente").onclick = () => {
+      const datosEquipo = {
+        nombreClub: document.querySelector("#input-nombre").value,
+        keyPublica: document.querySelector("#key-publica").value,
+        keySecreta: document.querySelector("#key-secreta").value,
+        cantidadXLM: document.querySelector("#cantidad-XLM").value,
+      };
+      crearInterfaz("menu de inicio");
+      console.log(datosEquipo)
+      crearEquipos(datosEquipo)
+    };
   } else {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlBinvenida;
-    document.querySelector('#boton-empezar').onclick = () => crearInterfaz('menu de inicio');
+    document.querySelector("#boton-empezar").onclick = () =>
+      crearInterfaz("login");
   }
 }
 

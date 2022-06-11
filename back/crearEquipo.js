@@ -128,33 +128,28 @@ function crearSuplentes() {
 
   return suplentes;
 }
-const guardarEquipoEnLocalStorage = (objetoEquipo) => {
-  const equipoAString = JSON.stringify(objetoEquipo);
-  localStorage.setItem(objetoEquipo.nombre, equipoAString);
-};
-function crearEquipo() {
-  const equipoSeleccionado = numeroAleatorio(0, nombresParaEquipos.length);
+
+function crearEquipo(datosEquipo) {
 
   const equipoNuevo = new Equipo(
-    nombresParaEquipos[equipoSeleccionado],
+    datosEquipo.nombreClub,
     nanoid(),
-    "proximamente nacionalidad",
-    `logo${equipoSeleccionado}.jpg`,
-    "proximamente key publica",
-    "proximamente key privada",
+    "Argentina",
+    `logo0.jpg`,
+    datosEquipo.keyPublica,
+    datosEquipo.keySecreta,
     {
       titulares: crearTitulares(),
       suplentes: crearSuplentes(),
       deshabilitados: [],
     }
   );
-  guardarEquipoEnLocalStorage(equipoNuevo);
 
   return equipoNuevo.nombre;
 }
 
-function crearEquipos() {
-    crearEquipo()
+function crearEquipos(datosEquipo) {
+    crearEquipo(datosEquipo)
 }
 
 export default crearEquipos;

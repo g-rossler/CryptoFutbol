@@ -5,7 +5,6 @@ import crearEquipos from '../back/crearEquipo';
 
 function main() {
     crearInterfaz('')
-    crearEquipos()
 }
 
 main()
