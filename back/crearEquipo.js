@@ -5,7 +5,6 @@ import {
   posiciones,
 } from "./datos-jugadores";
 
-
 class Jugador {
   constructor(nombre, id, habilidades, posicion, club, imagenPerfil) {
     this.nombre = nombre;
