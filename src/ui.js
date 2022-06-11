@@ -1,7 +1,6 @@
-import menuInicio from './pages/Inicio'
-import text from './pages/Inicio2'
+import text from './pages/Inicio'
 
 export default function cambiarBackground(){
-    const $aplicacion = document.querySelector('#aplicacion')
+    const $aplicacion = document.querySelector('#main')
     $aplicacion.innerHTML = text
 }
