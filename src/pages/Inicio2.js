@@ -1,4 +1,4 @@
-export const text =`<div id="aplicacion" class="container-fluid d-flex flex-column justify-content-between">
+const text =`<div id="aplicacion" class="container-fluid d-flex flex-column justify-content-between">
 <div class="container-fluid d-flex flex-row justify-content-between" id="navbar">
   <div class="d-flex flex-row align-items-center justify-content-center px-4 py-1 bor-der" id="logo">
     <img src="./img/logo.svg" alt="" class="" />
@@ -37,3 +37,5 @@ export const text =`<div id="aplicacion" class="container-fluid d-flex flex-colu
   <button class="button-81 mx-2" role="button">TRANSFERENCIAS</button>
 </div>
 </div>`
+
+export default text

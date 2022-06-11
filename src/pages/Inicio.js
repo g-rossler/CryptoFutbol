@@ -1,9 +1,8 @@
 const imagen = new URL("../imagenes/escudos/escudo.svg", import.meta.url);
 
-export default function menuInicio() {
-    return data = `
+const menuInicio = `
     <div class='bg-secondary'>hola</div>
     <img src="${imagen}"/>
-    `;
-    
-}
+    `
+
+export default menuInicio
