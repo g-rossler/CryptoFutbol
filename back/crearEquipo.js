@@ -31,7 +31,7 @@ class Equipo {
     nacionalidad,
     logo,
     keyPublica,
-    keyPrivada,
+    keySecreta,
     jugadores
   ) {
     this.nombre = nombre;
@@ -39,7 +39,7 @@ class Equipo {
     this.nacionalidad = nacionalidad;
     this.logo = logo;
     this.keyPublica = keyPublica;
-    this.keyPrivada = keyPrivada;
+    this.keySecreta = keySecreta;
     this.jugadores = {
       titulares: jugadores.titulares,
       suplentes: jugadores.suplentes,

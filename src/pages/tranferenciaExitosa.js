@@ -27,7 +27,7 @@ const htmlTransferenciaExitosa = `<div id="aplicacion" class="container-fluid d-
 
 
 <div id="principal">
-    <h1>NO HAY MAS JUGADORES PARA COMPRAR</h1>
+    <h1 class='text-white text-center'>NO HAY MAS JUGADORES PARA COMPRAR</h1>
 </div>
 
 

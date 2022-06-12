@@ -5,44 +5,41 @@ const sdk = /** @type {import("stellar-sdk")} */ (window.StellarSdk);
 const { Keypair, Asset, Server, TransactionBuilder, Operation } = sdk;
 const server = new Server("https://horizon-testnet.stellar.org");
 
-const distributorKeyPair = sdk.Keypair.fromSecret(
+const ditribuidorKeyPair = sdk.Keypair.fromSecret(
   "SCMXWSZXDJKG7TXQOJZ5ZDJBQ5H7CYFMSQGJWPTLRACHPYMPLV3K2PWY"
 );
 
 function consultarDatosUsuario() {
   const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
-  console.log(datosUsuario.keyPublica);
   return datosUsuario
 }
 
 export default async function comprarJugador() {
   const datosUsuario = consultarDatosUsuario();
-  await realizarPago(datosUsuario.keyPublica, datosUsuario.keySecreta);
+  await realizarPago(datosUsuario);
   crearInterfaz('transferencia exitosa')
 }
 
 async function realizarPago(datosUsuario) {
-    const userKeyPair = Keypair.fromSecret(datosUsuario.keySecreta);
-    const sourceAccount = await server.loadAccount(userKeyPair.publicKey());
+    const keySecretaUsuario = datosUsuario.keySecreta
+    const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
+    const cuentaOrigen = await server.loadAccount(usuarioKeyPair.publicKey());
 
-    const tx = new TransactionBuilder(sourceAccount, {
+    const tx = new TransactionBuilder(cuentaOrigen, {
         fee: await server.fetchBaseFee(),
         networkPassphrase: "Test SDF Network ; September 2015",
     }).addOperation(Operation.payment({
         amount: "10",
         asset: Asset.native(),
-        destination: distributorKeyPair.publicKey()
+        destination: ditribuidorKeyPair.publicKey()
     }))
         .setTimeout(60 * 10)
         .build();
 
-    console.log(tx.toXDR());
-
-    tx.sign(userKeyPair);
+    tx.sign(usuarioKeyPair);
 
     try {
         const txResult = await server.submitTransaction(tx);
-        console.log(txResult);
     } catch (e) {
         console.error(e);
     }
