@@ -38,6 +38,7 @@ async function realizarPago(datosUsuario) {
   const keySecretaUsuario = datosUsuario.keySecreta;
   const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
   const cuentaOrigen = await server.loadAccount(usuarioKeyPair.publicKey());
+  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
 
   const tx = new TransactionBuilder(cuentaOrigen, {
     fee: await server.fetchBaseFee(),
@@ -46,7 +47,7 @@ async function realizarPago(datosUsuario) {
     .addOperation(
       Operation.payment({
         amount: "10",
-        asset: Asset.native(),
+        asset: nuevoToken,
         destination: ditribuidorKeyPair.publicKey(),
       })
     )
@@ -66,6 +67,7 @@ export async function enviarPremio(datosUsuario) {
   const keySecretaUsuario = datosUsuario.keySecreta;
   const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
   const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
+  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
 
   const tx = new TransactionBuilder(cuentaOrigen, {
     fee: await server.fetchBaseFee(),
@@ -74,7 +76,7 @@ export async function enviarPremio(datosUsuario) {
     .addOperation(
       Operation.payment({
         amount: "20",
-        asset: Asset.native(),
+        asset: nuevoToken,
         destination: usuarioKeyPair.publicKey(),
       })
     )
@@ -95,12 +97,10 @@ export async function crearToken() {
   const cantidadXLM = datosUsuario.cantidadXLM;
   const keySecretaUsuario = datosUsuario.keySecreta;
   const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
-  const sourceAccount = await server.loadAccount(ditribuidorKeyPair.publicKey());
-  const randomAsset = new Asset('FTOK12341234', creadorKeyPair.publicKey());
+  const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
+  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
 
-  console.log(randomAsset);
-
-  const tx = new TransactionBuilder(sourceAccount, {
+  const tx = new TransactionBuilder(cuentaOrigen, {
       fee: await server.fetchBaseFee(),
       networkPassphrase: "Test SDF Network ; September 2015",
   })
@@ -111,29 +111,25 @@ export async function crearToken() {
       destination: ditribuidorKeyPair.publicKey()
   }))
   .addOperation(Operation.changeTrust({
-      asset: randomAsset,
+      asset: nuevoToken,
       source: usuarioKeyPair.publicKey()
   }))
 
   .addOperation(Operation.payment({
       amount: cantidadXLM,
-      asset: randomAsset,
+      asset: nuevoToken,
       destination: usuarioKeyPair.publicKey(),
       source: ditribuidorKeyPair.publicKey()
   }))
       .setTimeout(60 * 10) 
       .build();
 
-
-  console.log(tx.toXDR());
-
-
   tx.sign(usuarioKeyPair);
   tx.sign(ditribuidorKeyPair);
 
   try {
-      const txResult = await server.submitTransaction(tx);
-      console.log(txResult);
+      const txResultado = await server.submitTransaction(tx);
+      console.log(txResultado);
   } catch (e) {
       console.error(e);
   }
