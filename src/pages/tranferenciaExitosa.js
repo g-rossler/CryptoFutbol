@@ -1,7 +1,7 @@
 const urlLogo = new URL ("../imagenes/logo.svg", import.meta.url);
 const urlArrow = new URL ("../imagenes/arrow.svg", import.meta.url);
 
-const htmlTransferencias = `<div id="aplicacion" class="container-fluid d-flex flex-column justify-content-between p-0">
+const htmlTransferenciaExitosa = `<div id="aplicacion" class="container-fluid d-flex flex-column justify-content-between p-0">
 <div class="container-fluid d-flex flex-row justify-content-between" id="navbar">
   <div class="d-flex flex-row align-items-center justify-content-center px-4 py-1 bor-der" id="logo">
     <img src="${urlLogo}" alt="" class="" />
@@ -27,30 +27,7 @@ const htmlTransferencias = `<div id="aplicacion" class="container-fluid d-flex f
 
 
 <div id="principal">
-<table class="table text-white text-center" id="tabla-titulares">
-  <thead id="tabla-primera-fila">
-    <tr>
-      <th scope="col">POS</th>
-      <th scope="col">NOMBRE</th>
-      <th scope="col">ATQ</th>
-      <th scope="col">DEF</th>
-      <th scope="col">RES</th>
-      <th scope="col">PRECIO</th>
-      <th scope="col">ACCIONES</th>
-    </tr>
-  </thead>
-  <thead>
-    <tr>
-      <th scope="row">ARQUERO</th>
-      <td>FELIX SANTOS</td>
-      <td>50</td>
-      <td>40</td>
-      <td>55</td>
-      <td>$FTOK 10</td>
-      <td><button class="button-81 boton-comprar-jugador" role="button">COMPRAR</button></td>
-    </tr>
-  </thead>
-  </table>
+    <h1>NO HAY MAS JUGADORES PARA COMPRAR</h1>
 </div>
 
 
@@ -64,4 +41,4 @@ const htmlTransferencias = `<div id="aplicacion" class="container-fluid d-flex f
 </div>
 </div>`;
 
-export default htmlTransferencias;
+export default htmlTransferenciaExitosa;
