@@ -30,7 +30,7 @@ const htmlMenuInicio =`<div id="aplicacion" class="container-fluid d-flex flex-c
 <div id="principal">
         <div class="text-center d-flex flex-column" style="height: 100%; border-bottom: 3px solid white">
           <div style="border-bottom: 3px solid white">
-            <h2 class="text-white">BIENVENIDO ARGENTINA FC</h2>
+            <h2 class="text-white" id='nombre-club'></h2>
           </div>
           <div
             class="d-flex flex-row align-items-center"

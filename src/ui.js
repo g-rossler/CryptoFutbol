@@ -149,6 +149,8 @@ export function crearInterfaz(pantalla) {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlMenuInicio;
     crearBotones();
+    const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
+    document.querySelector('#nombre-club').innerText = `BIENVENIDO ${datosUsuario.nombre}`
   } else if (pantalla === "equipo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlEquipo;
@@ -186,8 +188,9 @@ export function crearInterfaz(pantalla) {
         keySecreta: document.querySelector("#key-secreta").value,
         cantidadXLM: document.querySelector("#cantidad-XLM").value,
       };
-      crearInterfaz("menu de inicio");
       crearEquipos(datosEquipo);
+      crearInterfaz("menu de inicio");
+      
     };
   } else {
     const $aplicacion = document.querySelector("#main");
