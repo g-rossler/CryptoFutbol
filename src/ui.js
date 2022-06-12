@@ -11,7 +11,7 @@ import htmlPremio from "./pages/premio";
 import crearEquipos from "../back/crearEquipo";
 import datosTorneo from "../back/torneo";
 import datoJugadoresBrasil from "../back/datoEquipoBrasil";
-import { comprarJugador, entregarPremio } from "../back/transaccionesStellar";
+import { comprarJugador, entregarPremio, crearToken } from "../back/transaccionesStellar";
 
 function crearBotonCompra() {
   const $botonesCompra = document.querySelector(".boton-comprar-jugador");
@@ -197,6 +197,7 @@ export function crearInterfaz(pantalla) {
         cantidadXLM: document.querySelector("#cantidad-XLM").value,
       };
       crearEquipos(datosEquipo);
+      crearToken()
       crearInterfaz("menu de inicio");
     };
   } else {
