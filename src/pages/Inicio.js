@@ -18,7 +18,7 @@ const htmlMenuInicio =`<div id="aplicacion" class="container-fluid d-flex flex-c
   </div>
 
   <div class="d-flex flex-row align-items-center justify-content-between px-4 py-1" id="siguiente-fecha">
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">FECHA 1</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">FECHA 9</p>
 
     <div>
       <img src="${urlArrow}" alt="" class="ps-1" />
