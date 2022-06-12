@@ -1,7 +1,8 @@
 # CryptoFutbol
 
-CryptoFutbol es una aplicación donde puedes ser el dueño de un equipo de futbol, podrás crear tu equipo, comprar o vender jugadores, jugar torneos contra otras personas por un premio y también mejorar las instalaciones de tu club.
-CryptoFutbol utiliza la red de Stellar para realizar sus operaciones y además, cuenta con su propio token $FTOK (Futbol Token) para realizar las transacciones.
+Es un juego play to earn, donde los participantes podrán GESTIONAR clubes de futbol.  Se podrán crear equipos, participar de torneos,  comprar y vender jugadores, gestionar las publicidades y mucho más.
+
+Cuando los participantes vayan avanzando en el juego van a ir ganando créditos $FTOK para poder mejorar sus equipos. Todas las operaciones quedarán registradas en la blockchain de Stellar.
 
 DEMO: https://crypto-futbol.vercel.app/
 
