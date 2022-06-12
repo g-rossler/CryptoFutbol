@@ -6,12 +6,12 @@ import htmlTrasferencias from "./pages/transferencias";
 import htmlBinvenida from "./pages/bienvenida";
 import htmlLogIn from "./pages/login";
 import htmlTorneoDetalle from "./pages/TorneoDetalle";
-import htmlTransferenciaExitosa from './pages/tranferenciaExitosa'
+import htmlTransferenciaExitosa from "./pages/tranferenciaExitosa";
+import htmlPremio from "./pages/premio";
 import crearEquipos from "../back/crearEquipo";
 import datosTorneo from "../back/torneo";
 import datoJugadoresBrasil from "../back/datoEquipoBrasil";
-import comprarJugador from "../back/transaccionesStellar";
-
+import { comprarJugador, entregarPremio } from "../back/transaccionesStellar";
 
 function crearBotonCompra() {
   const $botonesCompra = document.querySelector(".boton-comprar-jugador");
@@ -133,6 +133,8 @@ function crearEquipoDetalle() {
 }
 
 function crearBotones() {
+  document.querySelector("#siguiente-fecha").onclick = () =>
+  entregarPremio();
   document.querySelector("#boton-inicio").onclick = () =>
     crearInterfaz("menu de inicio");
   document.querySelector("#boton-equipo").onclick = () =>
@@ -150,7 +152,9 @@ export function crearInterfaz(pantalla) {
     $aplicacion.innerHTML = htmlMenuInicio;
     crearBotones();
     const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
-    document.querySelector('#nombre-club').innerText = `BIENVENIDO ${datosUsuario.nombre}`
+    document.querySelector(
+      "#nombre-club"
+    ).innerText = `BIENVENIDO ${datosUsuario.nombre}`;
   } else if (pantalla === "equipo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlEquipo;
@@ -158,6 +162,10 @@ export function crearInterfaz(pantalla) {
   } else if (pantalla === "club") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlClub;
+    crearBotones();
+  } else if (pantalla === "premio") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlPremio;
     crearBotones();
   } else if (pantalla === "torneo") {
     const $aplicacion = document.querySelector("#main");
@@ -190,7 +198,6 @@ export function crearInterfaz(pantalla) {
       };
       crearEquipos(datosEquipo);
       crearInterfaz("menu de inicio");
-      
     };
   } else {
     const $aplicacion = document.querySelector("#main");

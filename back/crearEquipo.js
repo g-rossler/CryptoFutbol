@@ -32,7 +32,8 @@ class Equipo {
     logo,
     keyPublica,
     keySecreta,
-    jugadores
+    jugadores,
+    cantidadXLM
   ) {
     this.nombre = nombre;
     this.id = id;
@@ -45,6 +46,7 @@ class Equipo {
       suplentes: jugadores.suplentes,
       deshabilitados: jugadores.deshabilitados,
     };
+    this.cantidadXLM = cantidadXLM
   }
 
   puntosTorneo = 0;
@@ -139,7 +141,8 @@ function crearEquipo(datosEquipo) {
       titulares: crearTitulares(datosEquipo.nombreClub),
       suplentes: crearSuplentes(datosEquipo.nombreClub),
       deshabilitados: [],
-    }
+    },
+    datosEquipo.cantidadXLM
   );
   return equipoNuevo
 }
