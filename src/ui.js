@@ -1,6 +1,211 @@
-import text from './pages/Inicio'
+import htmlMenuInicio from "./pages/Inicio";
+import htmlEquipo from "./pages/equipo";
+import htmlClub from "./pages/club";
+import htmlTorneo from "./pages/torneo";
+import htmlTrasferencias from "./pages/transferencias";
+import htmlBinvenida from "./pages/bienvenida";
+import htmlLogIn from "./pages/login";
+import htmlTorneoDetalle from "./pages/TorneoDetalle";
+import htmlTransferenciaExitosa from "./pages/tranferenciaExitosa";
+import htmlPremio from "./pages/premio";
+import crearEquipos from "../back/crearEquipo";
+import datosTorneo from "../back/torneo";
+import datoJugadoresBrasil from "../back/datoEquipoBrasil";
+import { comprarJugador, entregarPremio, crearToken } from "../back/transaccionesStellar";
 
-export default function cambiarBackground(){
-    const $aplicacion = document.querySelector('#main')
-    $aplicacion.innerHTML = text
+function crearBotonCompra() {
+  const $botonesCompra = document.querySelector(".boton-comprar-jugador");
+  $botonesCompra.addEventListener("click", () => comprarJugador());
 }
+
+function crearTablaTorneo() {
+  const $tabla = document.querySelector("#tabla");
+  const $tbody = document.createElement("tbody");
+  for (let i = 0; i <= 9; i++) {
+    const $tr = document.createElement("tr");
+    const $th = document.createElement("th");
+    $th.scope = "row";
+    $th.innerText = datosTorneo[i].posicion;
+    const $club = document.createElement("td");
+    $club.innerText = datosTorneo[i].nombre;
+    const $partidosJugados = document.createElement("td");
+    $partidosJugados.innerText = datosTorneo[i].partidosJugados;
+    const $partidosGanados = document.createElement("td");
+    $partidosGanados.innerText = datosTorneo[i].partidosGanados;
+    const $partidosPerdidos = document.createElement("td");
+    $partidosPerdidos.innerText = datosTorneo[i].partidosPerdidos;
+    const $partidosEmpatados = document.createElement("td");
+    $partidosEmpatados.innerText = datosTorneo[i].partidosEmpatados;
+    const $golesPositivos = document.createElement("td");
+    $golesPositivos.innerText = datosTorneo[i].golesPositivos;
+    const $golesNegativos = document.createElement("td");
+    $golesNegativos.innerText = datosTorneo[i].golesNegativos;
+    const $puntos = document.createElement("td");
+    $puntos.innerText = datosTorneo[i].puntosTorneo;
+    const $containerBoton = document.createElement("td");
+    const $boton = document.createElement("button");
+    $boton.innerText = "DETALLES";
+    $boton.className = "button-81";
+    $boton.id = datosTorneo[i].nombre;
+    $boton.addEventListener("click", () =>
+      crearInterfaz("detalle equipo torneo")
+    );
+
+    $containerBoton.appendChild($boton);
+    $tr.appendChild($th);
+    $tr.appendChild($club);
+    $tr.appendChild($partidosJugados);
+    $tr.appendChild($partidosGanados);
+    $tr.appendChild($partidosPerdidos);
+    $tr.appendChild($partidosEmpatados);
+    $tr.appendChild($golesPositivos);
+    $tr.appendChild($golesNegativos);
+    $tr.appendChild($puntos);
+    $tr.appendChild($containerBoton);
+    $tbody.appendChild($tr);
+  }
+  $tabla.appendChild($tbody);
+}
+
+function crearJugadoresTitulares() {
+  const $tabla = document.querySelector("#tabla-titulares");
+  const $tbody = document.createElement("tbody");
+  for (let i = 0; i <= 10; i++) {
+    const $tr = document.createElement("tr");
+    const $th = document.createElement("th");
+    $th.scope = "row";
+    $th.innerText = datoJugadoresBrasil.jugadores.titulares[i].posicion;
+    const $nombre = document.createElement("td");
+    $nombre.innerText = datoJugadoresBrasil.jugadores.titulares[i].nombre;
+    const $atq = document.createElement("td");
+    $atq.innerText =
+      datoJugadoresBrasil.jugadores.titulares[i].habilidades.ataque;
+    const $def = document.createElement("td");
+    $def.innerText =
+      datoJugadoresBrasil.jugadores.titulares[i].habilidades.defensa;
+    const $res = document.createElement("td");
+    $res.innerText =
+      datoJugadoresBrasil.jugadores.titulares[i].habilidades.resistencia;
+
+    $tr.appendChild($th);
+    $tr.appendChild($nombre);
+    $tr.appendChild($atq);
+    $tr.appendChild($def);
+    $tr.appendChild($res);
+    $tbody.appendChild($tr);
+  }
+  $tabla.appendChild($tbody);
+}
+
+function crearJugadoresSuplentes() {
+  const $tabla = document.querySelector("#tabla-suplentes");
+  const $tbody = document.createElement("tbody");
+  for (let i = 0; i <= 4; i++) {
+    const $tr = document.createElement("tr");
+    const $th = document.createElement("th");
+    $th.scope = "row";
+    $th.innerText = datoJugadoresBrasil.jugadores.suplentes[i].posicion;
+    const $nombre = document.createElement("td");
+    $nombre.innerText = datoJugadoresBrasil.jugadores.suplentes[i].nombre;
+    const $atq = document.createElement("td");
+    $atq.innerText =
+      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.ataque;
+    const $def = document.createElement("td");
+    $def.innerText =
+      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.defensa;
+    const $res = document.createElement("td");
+    $res.innerText =
+      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.resistencia;
+
+    $tr.appendChild($th);
+    $tr.appendChild($nombre);
+    $tr.appendChild($atq);
+    $tr.appendChild($def);
+    $tr.appendChild($res);
+    $tbody.appendChild($tr);
+  }
+  $tabla.appendChild($tbody);
+}
+
+function crearEquipoDetalle() {
+  crearJugadoresTitulares();
+  crearJugadoresSuplentes();
+}
+
+function crearBotones() {
+  document.querySelector("#siguiente-fecha").onclick = () =>
+  entregarPremio();
+  document.querySelector("#boton-inicio").onclick = () =>
+    crearInterfaz("menu de inicio");
+  document.querySelector("#boton-equipo").onclick = () =>
+    crearInterfaz("equipo");
+  document.querySelector("#boton-club").onclick = () => crearInterfaz("club");
+  document.querySelector("#boton-torneo").onclick = () =>
+    crearInterfaz("torneo");
+  document.querySelector("#boton-transferencias").onclick = () =>
+    crearInterfaz("transferencias");
+}
+
+export function crearInterfaz(pantalla) {
+  if (pantalla === "menu de inicio") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlMenuInicio;
+    crearBotones();
+    const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
+    document.querySelector(
+      "#nombre-club"
+    ).innerText = `BIENVENIDO ${datosUsuario.nombre}`;
+  } else if (pantalla === "equipo") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlEquipo;
+    crearBotones();
+  } else if (pantalla === "club") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlClub;
+    crearBotones();
+  } else if (pantalla === "premio") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlPremio;
+    crearBotones();
+  } else if (pantalla === "torneo") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlTorneo;
+    crearBotones();
+    crearTablaTorneo();
+  } else if (pantalla === "detalle equipo torneo") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlTorneoDetalle;
+    crearBotones();
+    crearEquipoDetalle();
+  } else if (pantalla === "transferencias") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlTrasferencias;
+    crearBotones();
+    crearBotonCompra();
+  } else if (pantalla === "transferencia exitosa") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlTransferenciaExitosa;
+    crearBotones();
+  } else if (pantalla === "login") {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlLogIn;
+    document.querySelector("#boton-siguiente").onclick = () => {
+      const datosEquipo = {
+        nombreClub: document.querySelector("#input-nombre").value,
+        keyPublica: document.querySelector("#key-publica").value,
+        keySecreta: document.querySelector("#key-secreta").value,
+        cantidadXLM: document.querySelector("#cantidad-XLM").value,
+      };
+      crearEquipos(datosEquipo);
+      crearToken()
+      crearInterfaz("menu de inicio");
+    };
+  } else {
+    const $aplicacion = document.querySelector("#main");
+    $aplicacion.innerHTML = htmlBinvenida;
+    document.querySelector("#boton-empezar").onclick = () =>
+      crearInterfaz("login");
+  }
+}
+
+export default crearInterfaz;

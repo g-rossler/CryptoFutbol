@@ -1,4 +1,10 @@
 import * as bootstrap from 'bootstrap';
-import cambiarBackground from './ui'
+import crearInterfaz from './ui'
+import crearEquipos from '../back/crearEquipo';
 
-cambiarBackground()
+
+function main() {
+    crearInterfaz('')
+}
+
+main()

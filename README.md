@@ -1,34 +1,66 @@
-This is a vanilla web app built with [Parcel](https://parceljs.org).
+# CryptoFutbol
 
-## Getting Started
+CryptoFutbol es una aplicación donde puedes ser el dueño de un equipo de futbol, podrás crear tu equipo, comprar o vender jugadores, jugar torneos contra otras personas por un premio y también mejorar las instalaciones de tu club.
+CryptoFutbol utiliza la red de Stellar para realizar sus operaciones y además, cuenta con su propio token $FTOK (Futbol Token) para realizar las transacciones.
 
-Run the dev server:
+DEMO: https://crypto-futbol.vercel.app/
 
-```bash
-yarn start
-# or
-npm start
+
+### Tecnologías Usadas
+
+Las tecnologías y herramientas que utilice para este proyecto son:
+
+- JavaScript
+- Bootstrap
+- CSS
+- HTML
+- NPM
+- Stellar sdk
+- Parcel
+
+#
+
+## Instalación
+
+Este proyecto utiliza distintas dependencias que deben ser instaladas, por lo que vas a necesitar tener NPM y correr este código en la consola.
+
+```
+npm install
 ```
 
-And open [localhost:1234](http://localhost:1234) in your browser!
+Esto te permitirá descargar las dependencias que se necesitan para utilizar correctamente el Pokedex.
 
-As you make changes, you should see your app automatically update in the browser without even refreshing the page!
+Luego, se debera ingresar en la consola:
 
-## Learn More
-
-- [Getting started guide](https://parceljs.org/getting-started/webapp/)
-- [Documentation](https://parceljs.org/docs/)
-
-## Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/parcel&template=parcel)
-
-_Live Example: https://parcel-template.vercel.app_
-
-### Deploying From Your Terminal
-
-You can deploy your new Parcel project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
 ```
+npm run start
+```
+Luego, ir al navegador a la direccion:
+```
+http://localhost:1234/
+```
+
+#
+
+## Soporte
+
+Si encontrás un error, podes contactar a:
+
+- Rossler Gerardo (https://github.com/g-rossler)
+- Joaquin Akerman (https://github.com/joaquinluis)
+- Marcos (https://github.com/Marcos8i22o)
+#
+
+## Contribuciones
+
+Son aceptados cambios o mejoras.
+
+#
+
+## Autor
+
+- Rossler Gerardo
+- Joaquin Akerman
+- Marcos
+
+#
