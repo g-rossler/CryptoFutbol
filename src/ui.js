@@ -21,6 +21,7 @@ function crearBotonCompra() {
 function crearTablaTorneo() {
   const $tabla = document.querySelector("#tabla");
   const $tbody = document.createElement("tbody");
+  $tbody.id = 'tbody'
   for (let i = 0; i <= 9; i++) {
     const $tr = document.createElement("tr");
     const $th = document.createElement("th");
