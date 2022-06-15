@@ -11,11 +11,11 @@ export async function crearJuego() {
   const datosFormulario = {
     nombreClub: document.querySelector("#input-nombre").value,
     keyPublica: document.querySelector("#key-publica").value,
-    cantidadXLM: (Number(document.querySelector("#cantidad-XLM").value) - 20).toString(),
+    cantidadXLM: document.querySelector("#cantidad-XLM").value,
   };
   guardarDatosUsuarioLocalStorage(datosFormulario);
-  //await crearCompraInicialToken();
-  crearEquipos(datosFormulario);
+  await crearCompraInicialToken();
+  await crearEquipos(datosFormulario);
 
   crearInterfaz("menu de inicio");
 }
