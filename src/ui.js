@@ -12,6 +12,7 @@ import crearEquipos from "../back/crearEquipo";
 import datosTorneo from "../back/torneo";
 import datoJugadoresBrasil from "../back/datoEquipoBrasil";
 import { comprarJugador, entregarPremio, crearToken } from "../back/transaccionesStellar";
+import { crearJuego } from "./app";
 
 function crearBotonCompra() {
   const $botonesCompra = document.querySelector(".boton-comprar-jugador");
@@ -190,21 +191,8 @@ export function crearInterfaz(pantalla) {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlLogIn;
     document.querySelector("#boton-siguiente").onclick = () => {
-      const datosEquipo = {
-        nombreClub: document.querySelector("#input-nombre").value,
-        keyPublica: document.querySelector("#key-publica").value,
-        keySecreta: document.querySelector("#key-secreta").value,
-        cantidadXLM: document.querySelector("#cantidad-XLM").value,
-      };
-      crearEquipos(datosEquipo);
-      crearToken()
-      crearInterfaz("menu de inicio");
+      crearJuego()
     };
-  } else {
-    const $aplicacion = document.querySelector("#main");
-    $aplicacion.innerHTML = htmlBinvenida;
-    document.querySelector("#boton-empezar").onclick = () =>
-      crearInterfaz("login");
   }
 }
 
