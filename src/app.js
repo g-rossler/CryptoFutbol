@@ -14,7 +14,7 @@ export async function crearJuego() {
     cantidadXLM: document.querySelector("#cantidad-XLM").value,
   };
   guardarDatosUsuarioLocalStorage(datosFormulario);
-  await crearCompraInicialToken();
+  //await crearCompraInicialToken();
   await crearEquipos(datosFormulario);
 
   crearInterfaz("menu de inicio");
