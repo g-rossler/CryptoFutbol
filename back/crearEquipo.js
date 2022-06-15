@@ -123,7 +123,7 @@ function crearEquipo(datosEquipo) {
   return equipoNuevo;
 }
 
-function crearEquipos() {
+async function crearEquipos() {
   const datosUsuario = consultarDatosUsuarioLocalStorage();
   const equipoUsuario = crearEquipo(datosUsuario);
   guardarEquipoLocalStorage(equipoUsuario);
