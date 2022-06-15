@@ -10,14 +10,47 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="module" src="app.js"></script>
   </head>
   <body>
     <div
       id="main"
       style="background-color: black; height: auto; min-height: 100vh"
     >
-      
+      <div
+        id="aplicacion"
+        class="container-fluid d-flex flex-column justify-content-between p-0"
+      >
+        <div
+          id="principal"
+          style="height: auto; min-height: 100vh"
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <div
+            class="d-flex flex-row justify-content-center align-items-center mb-5"
+          >
+            <img
+              src="./imagenes/logo.svg"
+              alt="CryptoFutbol logo"
+              class="me-5"
+              id="logo-pagina-bienvenida"
+            />
+            <h1 class="text-center text-white display-1">CryptoFutbol</h1>
+          </div>
+          <p class="text-center text-white fs-4 my-5" id="texto-bienvenida">
+            Viví la experiencia de construir y gestionar tu equipo, jugar
+            torneos contra otras personas y ganar premios en $FTOK.
+          </p>
+          <button
+            role="button"
+            id="boton-empezar"
+            class="button-81 mx-2"
+            onclick="main()"
+          >
+            Empezar
+          </button>
+        </div>
+      </div>
     </div>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
