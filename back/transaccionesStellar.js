@@ -1,4 +1,6 @@
 import crearInterfaz from "../src/ui";
+import { consultarDatosUsuarioLocalStorage } from "../src/localStorage";
+import simpleSigner from "./simpleSigner";
 
 const sdk = /** @type {import("stellar-sdk")} */ (window.StellarSdk);
 
@@ -6,7 +8,7 @@ const { Keypair, Asset, Server, TransactionBuilder, Operation } = sdk;
 const server = new Server("https://horizon-testnet.stellar.org");
 
 // GAO3272AFHFWZHNJAZEB7I52RJ3AGSKOHYGTCHDUEI23JHCIMV6M7Y6S
-const creadorKeyPair= sdk.Keypair.fromSecret(
+const creadorKeyPair = sdk.Keypair.fromSecret(
   "SBY53LRWRPF46OEKIEGKWUA22PACXJA5CJ7FDM3IBQP6HQDDXL6YKBFB"
 );
 
@@ -14,11 +16,6 @@ const creadorKeyPair= sdk.Keypair.fromSecret(
 const ditribuidorKeyPair = sdk.Keypair.fromSecret(
   "SCB4PNWJL47ADSS4BWYZBW47HKU5H2O3SWIYWIJT7P74KQLJU4QCY55N"
 );
-
-function consultarDatosUsuario() {
-  const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
-  return datosUsuario;
-}
 
 export async function comprarJugador() {
   const datosUsuario = consultarDatosUsuario();
@@ -38,7 +35,7 @@ async function realizarPago(datosUsuario) {
   const keySecretaUsuario = datosUsuario.keySecreta;
   const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
   const cuentaOrigen = await server.loadAccount(usuarioKeyPair.publicKey());
-  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
+  const nuevoToken = new Asset("FTOK12341234", creadorKeyPair.publicKey());
 
   const tx = new TransactionBuilder(cuentaOrigen, {
     fee: await server.fetchBaseFee(),
@@ -67,7 +64,7 @@ export async function enviarPremio(datosUsuario) {
   const keySecretaUsuario = datosUsuario.keySecreta;
   const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
   const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
-  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
+  const nuevoToken = new Asset("FTOK12341234", creadorKeyPair.publicKey());
 
   const tx = new TransactionBuilder(cuentaOrigen, {
     fee: await server.fetchBaseFee(),
@@ -92,45 +89,49 @@ export async function enviarPremio(datosUsuario) {
   }
 }
 
-export async function crearToken() {
-  const datosUsuario = consultarDatosUsuario();
+export async function crearToken(datosUsuario) {
   const cantidadXLM = datosUsuario.cantidadXLM;
-  const keySecretaUsuario = datosUsuario.keySecreta;
-  const usuarioKeyPair = Keypair.fromSecret(keySecretaUsuario);
+  const usuarioKeyPair = datosUsuario.keyPublica;
   const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
-  const nuevoToken = new Asset('FTOK12341234', creadorKeyPair.publicKey());
+  const nuevoToken = new Asset("FTOK12341234", creadorKeyPair.publicKey());
 
   const tx = new TransactionBuilder(cuentaOrigen, {
-      fee: await server.fetchBaseFee(),
-      networkPassphrase: "Test SDF Network ; September 2015",
+    fee: await server.fetchBaseFee(),
+    networkPassphrase: "Test SDF Network ; September 2015",
   })
-  .addOperation(Operation.payment({
-      amount: cantidadXLM,
-      asset: Asset.native(),
-      source: usuarioKeyPair.publicKey(),
-      destination: ditribuidorKeyPair.publicKey()
-  }))
-  .addOperation(Operation.changeTrust({
-      asset: nuevoToken,
-      source: usuarioKeyPair.publicKey()
-  }))
+    .addOperation(
+      Operation.payment({
+        amount: cantidadXLM,
+        asset: Asset.native(),
+        source: usuarioKeyPair,
+        destination: ditribuidorKeyPair.publicKey(),
+      })
+    )
+    .addOperation(
+      Operation.changeTrust({
+        asset: nuevoToken,
+        source: usuarioKeyPair,
+      })
+    )
 
-  .addOperation(Operation.payment({
-      amount: cantidadXLM,
-      asset: nuevoToken,
-      destination: usuarioKeyPair.publicKey(),
-      source: ditribuidorKeyPair.publicKey()
-  }))
-      .setTimeout(60 * 10) 
-      .build();
+    .addOperation(
+      Operation.payment({
+        amount: cantidadXLM,
+        asset: nuevoToken,
+        destination: usuarioKeyPair,
+        source: ditribuidorKeyPair.publicKey(),
+      })
+    )
+    .setTimeout(60 * 10)
+    .build();
 
-  tx.sign(usuarioKeyPair);
   tx.sign(ditribuidorKeyPair);
 
-  try {
-      const txResultado = await server.submitTransaction(tx);
-      console.log(txResultado);
-  } catch (e) {
-      console.error(e);
-  }
+  return tx.toXDR();
+}
+
+export async function crearCompraInicialToken() {
+  const datosUsuario = consultarDatosUsuarioLocalStorage();
+  const txDistribuidorFirmado = await crearToken(datosUsuario);
+  simpleSigner(txDistribuidorFirmado);
 }
