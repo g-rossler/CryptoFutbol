@@ -134,5 +134,6 @@ export async function crearToken(datosUsuario) {
 export async function crearCompraInicialToken() {
   const datosUsuario = consultarDatosUsuarioLocalStorage();
   const txDistribuidorFirmado = await crearToken(datosUsuario);
-  simpleSigner(txDistribuidorFirmado);
+  await simpleSigner(txDistribuidorFirmado);
+  
 }
