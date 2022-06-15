@@ -12,6 +12,7 @@
     "parcel": "^2.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.18.3",
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.2.0-beta1",
     "nanoid": "^4.0.0"
