@@ -3,7 +3,6 @@ import htmlEquipo from "./pages/equipo";
 import htmlClub from "./pages/club";
 import htmlTorneo from "./pages/torneo";
 import htmlTrasferencias from "./pages/transferencias";
-import htmlBinvenida from "./pages/bienvenida";
 import htmlLogIn from "./pages/login";
 import htmlTorneoDetalle from "./pages/TorneoDetalle";
 import htmlTransferenciaExitosa from "./pages/tranferenciaExitosa";
