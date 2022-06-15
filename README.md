@@ -9,14 +9,14 @@ DEMO: https://crypto-futbol.vercel.app/
 
 ### Tecnologías Usadas
 
-Las tecnologías y herramientas que utilice para este proyecto son:
+Las tecnologías y herramientas que se utilizaron para este proyecto son:
 
 - JavaScript
 - Bootstrap
 - CSS
 - HTML
 - NPM
-- Stellar sdk
+- Stellar blockchain
 - Parcel
 
 #
@@ -29,7 +29,7 @@ Este proyecto utiliza distintas dependencias que deben ser instaladas, por lo qu
 npm install
 ```
 
-Esto te permitirá descargar las dependencias que se necesitan para utilizar correctamente el Pokedex.
+Esto te permitirá descargar las dependencias que se necesitan para utilizar correctamente la aplicacion.
 
 Luego, se debera ingresar en la consola:
 
@@ -49,7 +49,7 @@ Si encontrás un error, podes contactar a:
 
 - Rossler Gerardo (https://github.com/g-rossler)
 - Joaquin Akerman (https://github.com/joaquinluis)
-- Marcos (https://github.com/Marcos8i22o)
+- Marcos Jinno (https://github.com/Marcos8i22o)
 #
 
 ## Contribuciones
@@ -60,8 +60,8 @@ Son aceptados cambios o mejoras.
 
 ## Autor
 
-- Rossler Gerardo
-- Joaquin Akerman
-- Marcos
+- Rossler Gerardo (https://www.linkedin.com/in/gerardo-rossler/)
+- Joaquin Akerman (https://www.linkedin.com/in/joaquin-akerman-9920a41a3/)
+- Marcos Jinno (https://www.linkedin.com/in/marcos-jinno/)
 
 #
