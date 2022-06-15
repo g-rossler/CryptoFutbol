@@ -91,6 +91,7 @@ export async function enviarPremio(datosUsuario) {
 
 export async function crearToken(datosUsuario) {
   const cantidadXLM = datosUsuario.cantidadXLM;
+  const cantidadFTOK = (Number(datosUsuario.cantidadXLM) - 20).toString()
   const usuarioKeyPair = datosUsuario.keyPublica;
   const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
   const nuevoToken = new Asset("FTOK12341234", creadorKeyPair.publicKey());
@@ -116,7 +117,7 @@ export async function crearToken(datosUsuario) {
 
     .addOperation(
       Operation.payment({
-        amount: cantidadXLM,
+        amount: cantidadFTOK,
         asset: nuevoToken,
         destination: usuarioKeyPair,
         source: ditribuidorKeyPair.publicKey(),
