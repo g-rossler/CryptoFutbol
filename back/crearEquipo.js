@@ -4,6 +4,11 @@ import {
   apellidosJugadores,
   posiciones,
 } from "./datos-jugadores";
+import {
+  consultarDatosUsuarioLocalStorage,
+  guardarEquipoLocalStorage,
+} from "../src/localStorage";
+import habilidadesAleatorias from "../src/utilidades";
 
 class Jugador {
   constructor(nombre, id, habilidades, posicion, club, imagenPerfil) {
@@ -18,9 +23,7 @@ class Jugador {
     this.club = club;
     this.imagenPerfil = imagenPerfil;
   }
-
   puedeJugar = true;
-
   jugadorEnVenta = false;
 }
 
@@ -31,7 +34,6 @@ class Equipo {
     nacionalidad,
     logo,
     keyPublica,
-    keySecreta,
     jugadores,
     cantidadXLM
   ) {
@@ -40,60 +42,37 @@ class Equipo {
     this.nacionalidad = nacionalidad;
     this.logo = logo;
     this.keyPublica = keyPublica;
-    this.keySecreta = keySecreta;
     this.jugadores = {
       titulares: jugadores.titulares,
       suplentes: jugadores.suplentes,
       deshabilitados: jugadores.deshabilitados,
     };
-    this.cantidadXLM = cantidadXLM
+    this.cantidadXLM = cantidadXLM;
   }
-
   puntosTorneo = 0;
-
   partidosJugados = 0;
-
   partidosGanados = 0;
-
   partidosPerdidos = 0;
-
   partidosEmpatados = 0;
-
   golesPositivos = 0;
-
   golesNegativos = 0;
-
   posicionTorneo = "";
-
   anioCreacion = "2022";
-
   fixture = {};
 }
 
-function numeroAleatorio(min, max) {
-  const num = Math.random() * (max - min);
-  const resultado = Math.floor(num + min);
-  return resultado;
-}
-
-function specsAleatorias() {
-  const resultado = Math.ceil(Math.random() * 20) + 50;
-  return resultado;
-}
 export function crearTitulares(club) {
   const titulares = [];
 
   for (let i = 0; i < 11; i += 1) {
     titulares.push(
       new Jugador(
-        // eslint-disable-next-line operator-linebreak
-        nombresDeJugadores[numeroAleatorio(0, nombresDeJugadores.length)] +
-          apellidosJugadores[numeroAleatorio(0, apellidosJugadores.length)],
+        nombresDeJugadores[i] + apellidosJugadores[i],
         nanoid(),
         {
-          ataque: specsAleatorias(),
-          defensa: specsAleatorias(),
-          resistencia: specsAleatorias(),
+          ataque: habilidadesAleatorias(),
+          defensa: habilidadesAleatorias(),
+          resistencia: habilidadesAleatorias(),
         },
         posiciones[i],
         club,
@@ -107,21 +86,19 @@ export function crearTitulares(club) {
 
 function crearSuplentes(club) {
   const suplentes = [];
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 11; i < 16; i += 1) {
     suplentes.push(
       new Jugador(
-        // eslint-disable-next-line operator-linebreak
-        nombresDeJugadores[numeroAleatorio(0, nombresDeJugadores.length)] +
-          apellidosJugadores[numeroAleatorio(0, apellidosJugadores.length)],
+        nombresDeJugadores[i] + apellidosJugadores[i],
         nanoid(),
         {
-          ataque: specsAleatorias(),
-          defensa: specsAleatorias(),
-          resistencia: specsAleatorias(),
+          ataque: habilidadesAleatorias(),
+          defensa: habilidadesAleatorias(),
+          resistencia: habilidadesAleatorias(),
         },
         posiciones[i],
         club,
-        `avataaars${i + 11}.png`
+        `avataaars${i}.png`
       )
     );
   }
@@ -136,7 +113,6 @@ function crearEquipo(datosEquipo) {
     "Argentina",
     `logo9.jpg`,
     datosEquipo.keyPublica,
-    datosEquipo.keySecreta,
     {
       titulares: crearTitulares(datosEquipo.nombreClub),
       suplentes: crearSuplentes(datosEquipo.nombreClub),
@@ -144,12 +120,13 @@ function crearEquipo(datosEquipo) {
     },
     datosEquipo.cantidadXLM
   );
-  return equipoNuevo
+  return equipoNuevo;
 }
 
-function crearEquipos(datosEquipo) {
-  const equipoUsuario = crearEquipo(datosEquipo);
-  guardarEquipoEnLocalStorage(equipoUsuario);
+function crearEquipos() {
+  const datosUsuario = consultarDatosUsuarioLocalStorage();
+  const equipoUsuario = crearEquipo(datosUsuario);
+  guardarEquipoLocalStorage(equipoUsuario);
 }
 
 export default crearEquipos;
