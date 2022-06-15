@@ -146,10 +146,6 @@ function crearEquipo(datosEquipo) {
   );
   return equipoNuevo
 }
-const guardarEquipoEnLocalStorage = (objetoEquipo) => {
-    const equipoAString = JSON.stringify(objetoEquipo);
-    localStorage.setItem('ClubUsuario', equipoAString);
-  };
 
 function crearEquipos(datosEquipo) {
   const equipoUsuario = crearEquipo(datosEquipo);
