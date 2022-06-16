@@ -68,25 +68,25 @@ function crearTablaTorneo() {
   $tabla.appendChild($tbody);
 }
 
-function crearJugadoresTitulares() {
+function crearJugadoresTitulares(baseDatos) {
   const $tabla = document.querySelector("#tabla-titulares");
   const $tbody = document.createElement("tbody");
   for (let i = 0; i <= 10; i++) {
     const $tr = document.createElement("tr");
     const $th = document.createElement("th");
     $th.scope = "row";
-    $th.innerText = datoJugadoresBrasil.jugadores.titulares[i].posicion;
+    $th.innerText = baseDatos.jugadores.titulares[i].posicion;
     const $nombre = document.createElement("td");
-    $nombre.innerText = datoJugadoresBrasil.jugadores.titulares[i].nombre;
+    $nombre.innerText = baseDatos.jugadores.titulares[i].nombre;
     const $atq = document.createElement("td");
     $atq.innerText =
-      datoJugadoresBrasil.jugadores.titulares[i].habilidades.ataque;
+    baseDatos.jugadores.titulares[i].habilidades.ataque;
     const $def = document.createElement("td");
     $def.innerText =
-      datoJugadoresBrasil.jugadores.titulares[i].habilidades.defensa;
+    baseDatos.jugadores.titulares[i].habilidades.defensa;
     const $res = document.createElement("td");
     $res.innerText =
-      datoJugadoresBrasil.jugadores.titulares[i].habilidades.resistencia;
+    baseDatos.jugadores.titulares[i].habilidades.resistencia;
 
     $tr.appendChild($th);
     $tr.appendChild($nombre);
@@ -98,25 +98,25 @@ function crearJugadoresTitulares() {
   $tabla.appendChild($tbody);
 }
 
-function crearJugadoresSuplentes() {
+function crearJugadoresSuplentes(baseDatos) {
   const $tabla = document.querySelector("#tabla-suplentes");
   const $tbody = document.createElement("tbody");
   for (let i = 0; i <= 4; i++) {
     const $tr = document.createElement("tr");
     const $th = document.createElement("th");
     $th.scope = "row";
-    $th.innerText = datoJugadoresBrasil.jugadores.suplentes[i].posicion;
+    $th.innerText = baseDatos.jugadores.suplentes[i].posicion;
     const $nombre = document.createElement("td");
-    $nombre.innerText = datoJugadoresBrasil.jugadores.suplentes[i].nombre;
+    $nombre.innerText = baseDatos.jugadores.suplentes[i].nombre;
     const $atq = document.createElement("td");
     $atq.innerText =
-      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.ataque;
+    baseDatos.jugadores.suplentes[i].habilidades.ataque;
     const $def = document.createElement("td");
     $def.innerText =
-      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.defensa;
+    baseDatos.jugadores.suplentes[i].habilidades.defensa;
     const $res = document.createElement("td");
     $res.innerText =
-      datoJugadoresBrasil.jugadores.suplentes[i].habilidades.resistencia;
+    baseDatos.jugadores.suplentes[i].habilidades.resistencia;
 
     $tr.appendChild($th);
     $tr.appendChild($nombre);
@@ -128,9 +128,14 @@ function crearJugadoresSuplentes() {
   $tabla.appendChild($tbody);
 }
 
-function crearEquipoDetalle() {
-  crearJugadoresTitulares();
-  crearJugadoresSuplentes();
+function crearEquipoDetalle(baseDatos) {
+  crearJugadoresTitulares(baseDatos);
+  crearJugadoresSuplentes(baseDatos);
+}
+
+function verificarSaldo() {
+  const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"));
+  document.querySelector('#ftok-saldo').innerText = `${datosUsuario.cantidadXLM} $FTOK` 
 }
 
 function crearBotones() {
@@ -156,37 +161,49 @@ export function crearInterfaz(pantalla) {
     document.querySelector(
       "#nombre-club"
     ).innerText = `BIENVENIDO ${datosUsuario.nombre}`;
+    verificarSaldo()
   } else if (pantalla === "equipo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlEquipo;
     crearBotones();
+    const datosUsuario = JSON.parse(localStorage.getItem("ClubUsuario"))
+    crearEquipoDetalle(datosUsuario)
+    verificarSaldo()
   } else if (pantalla === "club") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlClub;
     crearBotones();
+    document.querySelector('#club-nombre-club').innerText = `${datosUsuario.nombre}`
+    document.querySelector('#club-id').innerText = `${datosUsuario.keyPublica}`
+    verificarSaldo()
   } else if (pantalla === "premio") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlPremio;
     crearBotones();
+    verificarSaldo()
   } else if (pantalla === "torneo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTorneo;
     crearBotones();
     crearTablaTorneo();
+    verificarSaldo()
   } else if (pantalla === "detalle equipo torneo") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTorneoDetalle;
     crearBotones();
-    crearEquipoDetalle();
+    crearEquipoDetalle(datoJugadoresBrasil);
+    verificarSaldo()
   } else if (pantalla === "transferencias") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTrasferencias;
     crearBotones();
     crearBotonCompra();
+    verificarSaldo()
   } else if (pantalla === "transferencia exitosa") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlTransferenciaExitosa;
     crearBotones();
+    verificarSaldo()
   } else if (pantalla === "login") {
     const $aplicacion = document.querySelector("#main");
     $aplicacion.innerHTML = htmlLogIn;

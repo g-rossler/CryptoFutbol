@@ -13,11 +13,11 @@ const htmlTorneoDetalle =`<div id="aplicacion" class="container-fluid d-flex fle
       CUENTA 4064646465
     </p>
 
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">1000$FTOK</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold"  id='ftok-saldo'>1000$FTOK</p>
   </div>
 
   <div class="d-flex flex-row align-items-center justify-content-between px-4 py-1" id="siguiente-fecha">
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">FECHA 9</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">SIGUIENTE PARTIDO</p>
 
     <div>
       <img src="${urlArrow}" alt="" class="ps-1" />
@@ -25,63 +25,93 @@ const htmlTorneoDetalle =`<div id="aplicacion" class="container-fluid d-flex fle
   </div>
 </div>
 
+<div id="principal" class="d-flex flex-row">
+  <div id="container-tabla-principal">
+    <table class="table text-white text-center" id="tabla-titulares">
+      <thead id="tabla-primera-fila">
+        <tr>
+          <th scope="col">POS</th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">ATQ</th>
+          <th scope="col">DEF</th>
+          <th scope="col">RES</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 
-<div id="principal" class='d-flex flex-row'>
-
-<div>
-<table class="table text-white text-center" id="tabla-titulares">
-<thead id="tabla-primera-fila">
-  <tr>
-    <th scope="col">POS</th>
-    <th scope="col">NOMBRE</th>
-    <th scope="col">ATQ</th>
-    <th scope="col">DEF</th>
-    <th scope="col">RES</th>
-  </tr>
-</thead>
-</table>
-</div>
-
-<div class='d-flex flex-column'>
-    <div class='d-flex flex-row'>
-        <div class='d-flex flex-column' id='promedio-ataque'>
-          <p>60</p>
-          <p>ATQ</p>
+  <div
+    class="d-flex flex-column justify-content-start align-items-start"
+    id="container-tabla-secundaria"
+  >
+    <div class="d-flex flex-column mb-2" id="container-tabla-derecha">
+      <div
+        class="d-flex flex-row justify-content-evenly align-items-center"
+        id="container-tabla-habilidades"
+      >
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+          id="promedio-ataque"
+        >
+          <p class="fw-bold fs-1">60</p>
+          <p class="fw-bold fs-2">ATQ</p>
         </div>
-        <div class='d-flex flex-column' id='promedio-defensa'>
-          <p>55</p>
-          <p>DEF</p>
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+          id="promedio-defensa"
+        >
+          <p class="fw-bold fs-1">55</p>
+          <p class="fw-bold fs-2">DEF</p>
         </div>
-        <div class='d-flex flex-column' id='promedio-resistencia'>
-          <p>53</p>
-          <p>RES</p>
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+          id="promedio-resistencia"
+        >
+          <p class="fw-bold fs-1">53</p>
+          <p class="fw-bold fs-2">RES</p>
         </div>
+      </div>
     </div>
-    <div>
-        <table class="table text-white text-center" id="tabla-suplentes">
+
+    <div id="container-tabla-suplentes">
+      <table class="table text-white text-center" id="tabla-suplentes">
         <thead id="tabla-primera-fila">
-            <tr>
+          <tr>
             <th scope="col">POS</th>
             <th scope="col">NOMBRE</th>
             <th scope="col">ATQ</th>
             <th scope="col">DEF</th>
             <th scope="col">RES</th>
-            </tr>
+          </tr>
         </thead>
-        </table>
+      </table>
     </div>
+  </div>
 </div>
 
-</div>
-
-
-
-<div id="menu-botones" class="container-fluid d-flex flex-row justify-content-center py-3">
-  <button class="button-81 mx-2" role="button" id='boton-inicio'>INICIO</button>
-  <button class="button-81 mx-2" role="button" id='boton-equipo'>EQUIPO</button>
-  <button class="button-81 mx-2" role="button" id='boton-torneo'>TORNEO</button>
-  <button class="button-81 mx-2" role="button" id='boton-club'>CLUB</button>
-  <button class="button-81 mx-2" role="button" id='boton-transferencias'>TRANSFERENCIAS</button>
+<div
+  id="menu-botones"
+  class="container-fluid d-flex flex-row justify-content-center py-3"
+>
+  <button class="button-81 mx-2" role="button" id="boton-inicio">
+    INICIO
+  </button>
+  <button class="button-81 mx-2" role="button" id="boton-equipo">
+    EQUIPO
+  </button>
+  <button class="button-81 mx-2" role="button" id="boton-torneo">
+    TORNEO
+  </button>
+  <button class="button-81 mx-2" role="button" id="boton-club">
+    CLUB
+  </button>
+  <button
+    class="button-81 mx-2"
+    role="button"
+    id="boton-transferencias"
+  >
+    TRANSFERENCIAS
+  </button>
 </div>
 </div>`
 
