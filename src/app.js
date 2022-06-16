@@ -16,7 +16,7 @@ export async function crearJuego() {
     ).toString(),
   };
   guardarDatosUsuarioLocalStorage(datosFormulario);
-  //await crearCompraInicialToken();
+  await crearCompraInicialToken();
   await crearEquipos(datosFormulario);
 
   crearInterfaz("menu de inicio");
