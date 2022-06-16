@@ -13,11 +13,11 @@ const htmlTransferenciaExitosa = `<div id="aplicacion" class="container-fluid d-
       CUENTA 4064646465
     </p>
 
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">1000$FTOK</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold"  id='ftok-saldo'>1000$FTOK</p>
   </div>
 
   <div class="d-flex flex-row align-items-center justify-content-between px-4 py-1" id="siguiente-fecha">
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">FECHA 9</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">SIGUIENTE PARTIDO</p>
 
     <div>
       <img src="${urlArrow}" alt="" class="ps-1" />

@@ -1,4 +1,4 @@
-const urlEscudo = new URL ("../imagenes/escudos/escudo.svg", import.meta.url);
+const urlEscudo = new URL ("../imagenes/escudos/logo8.jpg", import.meta.url);
 const urlLogo = new URL ("../imagenes/logo.svg", import.meta.url);
 const urlArrow = new URL ("../imagenes/arrow.svg", import.meta.url);
 
@@ -14,11 +14,11 @@ const htmlMenuInicio =`<div id="aplicacion" class="container-fluid d-flex flex-c
       CUENTA 4064646465
     </p>
 
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">1000$FTOK</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold" id='ftok-saldo'>1000$FTOK</p>
   </div>
 
   <div class="d-flex flex-row align-items-center justify-content-between px-4 py-1" id="siguiente-fecha">
-    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">FECHA 9</p>
+    <p class="text-white text-center m-0 ps-3 fs-6 fw-bold">TERMINAR TORNEO</p>
 
     <div>
       <img src="${urlArrow}" alt="" class="ps-1" />
@@ -49,7 +49,7 @@ const htmlMenuInicio =`<div id="aplicacion" class="container-fluid d-flex flex-c
             >
               <h2 class="text-white">PRÓXIMO PARTIDO</h2>
               <img src="${urlEscudo}" alt="" class="my-5" />
-              <h2 class="text-white">CANADA FC</h2>
+              <h2 class="text-white">BRASIL SPORTS</h2>
             </div>
           </div>
         </div>
