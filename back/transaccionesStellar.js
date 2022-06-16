@@ -18,16 +18,14 @@ const ditribuidorKeyPair = sdk.Keypair.fromSecret(
 );
 
 export async function comprarJugador() {
-  const datosUsuario = consultarDatosUsuario();
+  const datosUsuario = consultarDatosUsuarioLocalStorage();
   await realizarPago(datosUsuario);
   crearInterfaz("transferencia exitosa");
 }
 
 export async function entregarPremio() {
-  console.log("3");
-  const datosUsuario = consultarDatosUsuario();
+  const datosUsuario = consultarDatosUsuarioLocalStorage();
   await enviarPremio(datosUsuario);
-  console.log("4");
   crearInterfaz("premio");
 }
 
@@ -90,8 +88,8 @@ export async function enviarPremio(datosUsuario) {
 }
 
 export async function crearToken(datosUsuario) {
-  const cantidadXLM = datosUsuario.cantidadXLM;
-  const cantidadFTOK = (Number(datosUsuario.cantidadXLM) - 20).toString()
+  const cantidadXLM = (Number(datosUsuario.cantidadXLM) + 20).toString()
+  const cantidadFTOK = datosUsuario.cantidadXLM
   const usuarioKeyPair = datosUsuario.keyPublica;
   const cuentaOrigen = await server.loadAccount(ditribuidorKeyPair.publicKey());
   const nuevoToken = new Asset("FTOK12341234", creadorKeyPair.publicKey());
