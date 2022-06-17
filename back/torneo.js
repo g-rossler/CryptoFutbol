@@ -110,4 +110,4 @@ const datosTorneo = [
     golesNegativos: 20,
   },
 ];
-export default datosTorneo
+export default datosTorneo;
