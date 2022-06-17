@@ -1,5 +1,9 @@
 import crearInterfaz from "./ui";
-import { guardarDatosUsuarioLocalStorage } from "./localStorage";
+import {
+  guardarDatosUsuarioLocalStorage,
+  consultarDatosUsuarioLocalStorage,
+  guardarFTOKUsuarioLocalStorage,
+} from "./localStorage";
 import { crearCompraInicialToken } from "../back/transaccionesStellar";
 import crearEquipos from "../back/crearEquipo";
 
@@ -16,8 +20,13 @@ export async function crearJuego() {
     ).toString(),
   };
   guardarDatosUsuarioLocalStorage(datosFormulario);
+  guardarFTOKUsuarioLocalStorage(datosFormulario.cantidadXLM);
   await crearCompraInicialToken();
-  await crearEquipos(datosFormulario);
+}
+
+export function usuarioAutorizado() {
+  const datosFormulario = consultarDatosUsuarioLocalStorage();
+  crearEquipos(datosFormulario);
 
   crearInterfaz("menu de inicio");
 }
