@@ -4,7 +4,7 @@ Es un juego play to earn, donde los participantes podrán GESTIONAR clubes de fu
 
 Cuando los participantes vayan avanzando en el juego van a ir ganando créditos $FTOK para poder mejorar sus equipos. Todas las operaciones quedarán registradas en la blockchain de Stellar.
 
-DEMO: [https://crypto-futbol.vercel.app/](https://crypto-futbol-r36lvhctq-g-rossler.vercel.app/)
+DEMO: https://crypto-futbol.vercel.app/
 
 
 ### Tecnologías Usadas
