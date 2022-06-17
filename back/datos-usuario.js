@@ -1,4 +1,3 @@
-let datosUsuario = {}
+let datosUsuario = {};
 
-
-export default datosUsuario
+export default datosUsuario;
